@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sistema moderno de lista de espera para reservas de canchas">
+  <meta name="theme-color" content="#2ecc71">
+  <title>Lista de Espera para Reservas</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.json">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1><i class="fas fa-clipboard-list"></i> Lista de Espera para Reservas</h1>
+      <p id="connection-status" class="online">En línea</p>
+    </header>
+
+    <div class="grid-layout">
+      <section class="card">
+        <form id="formAgregar">
+          <h2><i class="fas fa-plus-circle"></i> Agregar a la lista</h2>
+          <div class="form-group">
+            <label for="nombre"><i class="fas fa-user"></i> Nombre</label>
+            <input type="text" id="nombre" placeholder="Ej: Juan Pérez" required>
+          </div>
+          <div class="form-group">
+            <label for="telefono"><i class="fas fa-phone"></i> Teléfono</label>
+            <input type="tel" id="telefono" placeholder="Ej: 3001234567" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="dia"><i class="fas fa-calendar-day"></i> Día</label>
+              <select id="dia" required>
+                <option value="">Seleccione...</option>
+                <option>Lunes</option>
+                <option>Martes</option>
+                <option>Miércoles</option>
+                <option>Jueves</option>
+                <option>Viernes</option>
+                <option>Sábado</option>
+                <option>Domingo</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="horario"><i class="fas fa-clock"></i> Hora</label>
+              <input type="time" id="horario" required step="3600">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="cancha"><i class="fas fa-map-marked-alt"></i> Cancha</label>
+            <select id="cancha" required>
+              <option value="">Seleccione...</option>
+              <option>F6</option>
+              <option>F8</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-save"></i> Guardar
+          </button>
+        </form>
+      </section>
+
+      <section class="card">
+        <form id="formBuscar">
+          <h2><i class="fas fa-search"></i> Buscar en lista</h2>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="diaBuscar"><i class="fas fa-calendar-day"></i> Día</label>
+              <select id="diaBuscar" required>
+                <option value="">Seleccione...</option>
+                <option>Lunes</option>
+                <option>Martes</option>
+                <option>Miércoles</option>
+                <option>Jueves</option>
+                <option>Viernes</option>
+                <option>Sábado</option>
+                <option>Domingo</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="horarioBuscar"><i class="fas fa-clock"></i> Hora</label>
+              <input type="time" id="horarioBuscar" required step="3600">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="canchaBuscar"><i class="fas fa-map-marked-alt"></i> Cancha</label>
+            <select id="canchaBuscar" required>
+              <option value="">Seleccione...</option>
+              <option>F6</option>
+              <option>F8</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-secondary">
+            <i class="fas fa-search"></i> Buscar
+          </button>
+        </form>
+      </section>
+
+      <section class="card">
+        <div class="real-time-info">
+          <div id="fecha" class="fecha-actual"></div>
+          <div id="hora" class="hora-actual"></div>
+        </div>
+        <h3><i class="fas fa-list-ol"></i> Resultados</h3>
+        <ul id="listaResultados" class="reservas-list"></ul>
+      </section>
+    </div>
+
+    <div class="actions">
+      <button id="btnReset" class="btn btn-danger">
+        <i class="fas fa-trash-alt"></i> Limpiar todo
+      </button>
+      <button id="btnBackup" class="btn btn-info">
+        <i class="fas fa-file-export"></i> Respaldar
+      </button>
+      <input type="file" id="fileImport" accept=".json" style="display: none;">
+      <button id="btnImport" class="btn btn-warning">
+        <i class="fas fa-file-import"></i> Importar
+      </button>
+    </div>
+
+    <footer class="footer">
+      <p id="añoActual"></p>
+      <button id="btnInstall" class="btn-install">
+        <i class="fas fa-download"></i> Instalar App
+      </button>
+    </footer>
+
+    <div id="notificaciones-container"></div>
+    <div id="loader" class="loader-overlay">
+      <div class="loader-spinner"></div>
+    </div>
+
+    <script src="script.js"></script>
+  </div>
+</body>
+</html>
